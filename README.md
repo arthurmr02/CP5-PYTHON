@@ -138,17 +138,7 @@ Todos os dados vêm de chamadas `fetch` à API.
 
 ![Dashboard](docs/dashboard.png)
 
-## 8. Roteiro de demonstração (apresentação)
-
-1. `docker compose up -d` — mostrar o MongoDB subindo.
-2. Rodar `python -m crawler.openlibrary_crawler --paginas 2` — mostrar os logs (lidos/novos/atualizados) e o atraso entre requisições.
-3. Rodar novamente só `--assuntos fiction --paginas 3` — mostrar que registros repetidos são **atualizados** e não duplicados, e o total só cresce.
-4. No MongoDB (`mongosh`): `use openlibrary; db.livros.countDocuments(); db.livros.findOne(); db.livros.getIndexes()`.
-5. `uvicorn api.main:app --port 8000` e abrir `/docs`: testar `/api/livros?autor=tolkien`, `/api/livros?assunto=fantasy&ano_min=1990&ano_max=2000`, `/api/estatisticas`.
-6. Abrir `/dashboard/`: apresentar indicadores e gráficos, fazer uma busca (ex.: autor "Asimov") e navegar na paginação.
-7. Encerrar destacando a arquitetura modular (crawler independente da API; API desacoplada do dashboard).
-
-## 9. Resultado do teste realizado
+## 8. Resultado do teste realizado
 
 Execução real (07/10/2026): 6 assuntos × 2 páginas × 50 → 600 lidos, 573 obras únicas; nova execução de `fiction` (3 páginas)
 → 40 novas e 110 atualizadas, total **613** documentos, sem duplicatas. 502 autores únicos, ano médio ≈ 1977, média de 129 edições/obra.
