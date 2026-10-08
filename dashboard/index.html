@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard - Livros da Open Library</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+<header><h1>📚 Dashboard de Livros — Open Library</h1>
+<p>Dados coletados por crawler Python, armazenados no MongoDB e servidos por API FastAPI.</p></header>
+<main>
+<section class="cards">
+  <div class="card"><span>Total de livros</span><strong id="c-total">–</strong></div>
+  <div class="card"><span>Autores únicos</span><strong id="c-autores">–</strong></div>
+  <div class="card"><span>Média do ano de 1ª publicação</span><strong id="c-ano">–</strong></div>
+  <div class="card"><span>Média de edições por obra</span><strong id="c-edicoes">–</strong></div>
+  <div class="card"><span>Avaliação média</span><strong id="c-nota">–</strong></div>
+</section>
+<section class="graficos">
+  <div class="grafico"><h2>Livros por década</h2><canvas id="g-decadas"></canvas></div>
+  <div class="grafico"><h2>Assuntos mais frequentes</h2><canvas id="g-assuntos"></canvas></div>
+  <div class="grafico"><h2>Autores com mais livros</h2><canvas id="g-autores"></canvas></div>
+  <div class="grafico"><h2>Livros por idioma</h2><canvas id="g-idiomas"></canvas></div>
+</section>
+<section class="busca">
+  <h2>Pesquisar livros</h2>
+  <form id="form-busca">
+    <input id="f-titulo" placeholder="Título">
+    <input id="f-autor" placeholder="Autor">
+    <input id="f-assunto" placeholder="Assunto">
+    <input id="f-ano-min" type="number" placeholder="Ano de">
+    <input id="f-ano-max" type="number" placeholder="Ano até">
+    <select id="f-ordenar">
+      <option value="titulo">Ordenar: título</option>
+      <option value="ano_primeira_publicacao">Ordenar: ano</option>
+      <option value="qtd_edicoes">Ordenar: edições</option>
+      <option value="avaliacao_media">Ordenar: avaliação</option>
+    </select>
+    <button type="submit">Buscar</button><button type="button" id="limpar">Limpar</button>
+  </form>
+  <p id="info-resultados"></p>
+  <table>
+    <thead><tr><th>Capa</th><th>Título</th><th>Autor(es)</th><th>Ano</th><th>Edições</th><th>Avaliação</th><th>Assuntos</th></tr></thead>
+    <tbody id="tabela"></tbody>
+  </table>
+  <div class="paginacao"><button id="ant">◀ Anterior</button><span id="pag"></span><button id="prox">Próxima ▶</button></div>
+</section>
+</main>
+<footer>Fonte: <a href="https://openlibrary.org" target="_blank">openlibrary.org</a> · <a href="/docs" target="_blank">Documentação da API (Swagger)</a></footer>
+<script src="app.js"></script>
+</body>
+</html>
